@@ -1,13 +1,14 @@
 import http.server
 import socketserver
+import random
+
+kuji = ["☆彡大吉", "中吉", "小吉", "☠凶"]
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
-        if self.path == "/path1":
-           body = "This is /path1".encode()
-           status_code = 200
-        elif self.path == "/path2":
-           body = "This is /path2".encode()
+        if self.path == "/omikuji":
+           omikuji = random.choice(kuji)
+           body = omikuji.encode()
            status_code = 200
         else:
            body = "ページが見つかりません！".encode()
